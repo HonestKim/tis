@@ -5,13 +5,14 @@
  */
 package tis_pos;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
-
-
-
 
 /**
  *
@@ -26,7 +27,14 @@ public class PosMain extends javax.swing.JFrame {
     public PosMain() {
         initComponents();
          setSize(new java.awt.Dimension(1280,760));
+         this.tbReSal.addChangeListener(new ChangeListener() {
+             public void stateChanged(ChangeEvent e) {
+                ArrayList<Dsc_VO> arr= Sld.makeSoldInfo();
+                System.out.println("샐삽입");
+                showSoldInfo(arr);
+             }});
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,6 +78,7 @@ public class PosMain extends javax.swing.JFrame {
         btSubmit = new javax.swing.JButton();
         btAdmin = new javax.swing.JButton();
         tfReceived = new javax.swing.JTextField();
+    
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -130,8 +139,8 @@ public class PosMain extends javax.swing.JFrame {
 
         lbdate.setFont(new java.awt.Font("맑은 고딕", 0, 12)); // NOI18N
         lbdate.setForeground(new java.awt.Color(180, 255, 229));
-        lbdate.setText("2019-11-28");
-
+        lbdate.setText(Sld.showdate());
+        
         bt1.setBackground(new java.awt.Color(180, 255, 229));
         bt1.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
         bt1.setForeground(new java.awt.Color(81, 13, 117));
@@ -204,11 +213,7 @@ public class PosMain extends javax.swing.JFrame {
         ftBarcode.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
         ftBarcode.setForeground(new java.awt.Color(81, 13, 117));
         ftBarcode.setToolTipText("");
-        ftBarcode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ftBarcodeActionPerformed(evt);
-            }
-        });
+     
 
         btRegister.setBackground(new java.awt.Color(180, 255, 229));
         btRegister.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
@@ -264,8 +269,26 @@ public class PosMain extends javax.swing.JFrame {
         lbChangeNum.setForeground(new java.awt.Color(255, 153, 153));
         lbChangeNum.setText("거스름돈");//거스름돈
         tfReceived.setText("");//받은돈
-        //숫자
-
+        tfReceived.addActionListener(new ActionListener() {
+        	
+        	@Override
+        	public void actionPerformed(ActionEvent e)
+        	{
+        		btSubmitActionPerformed(e);
+        	}
+        });
+        
+        ftBarcode.addActionListener(new ActionListener() {
+        	
+        	@Override
+        	public void actionPerformed(ActionEvent e)
+        	{
+        		btRegisterActionPerformed(e);
+        	}
+        });
+        
+        
+        
         lbTotalNum.setFont(new java.awt.Font("맑은 고딕", 1, 24)); // NOI18N
         lbTotalNum.setForeground(new java.awt.Color(153, 204, 255));
         lbTotalNum.setText("");
@@ -282,7 +305,7 @@ public class PosMain extends javax.swing.JFrame {
         btCancel.setBackground(new java.awt.Color(255, 153, 153));
         btCancel.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
         btCancel.setForeground(new java.awt.Color(81, 13, 117));
-        btCancel.setText("종료");
+        btCancel.setText("모두취소");
         btCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCancelActionPerformed(evt);
@@ -303,7 +326,6 @@ public class PosMain extends javax.swing.JFrame {
         btAdmin.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
         btAdmin.setForeground(new java.awt.Color(81, 13, 117));
         btAdmin.setText("관리자모드");
-        btAdmin.setToolTipText("");
         btAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btAdminActionPerformed(evt);
@@ -471,36 +493,48 @@ public class PosMain extends javax.swing.JFrame {
 
     private void bt3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt3ActionPerformed
         
+    	if(Sld.cking_product_num(evt.getActionCommand()))//재고쳌
+    	{
     	ArrayList<ShowListVO> arr2 =Sld.insertViewList(evt.getActionCommand()); 
     	  showTable(arr2);
     	  lbSubTotalNum.setText(Sld.cal_all_sum());
     	  lbTotalNum.setText(Sld.total(lbDiscountNum.getText(),lbSubTotalNum.getText()));  
-    	  
+        }
+    	else
+    		JOptionPane.showMessageDialog(this, "입력한 상품의 재고가 부족합니다");
     	  //봉투
     }//GEN-LAST:event_bt3ActionPerformed
 
     private void bt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt2ActionPerformed
-    	ArrayList<ShowListVO> arr2 =Sld.insertViewList(evt.getActionCommand()); 
-    	  showTable(arr2);
-    	  lbSubTotalNum.setText(Sld.cal_all_sum());
-    	  lbTotalNum.setText(Sld.total(lbDiscountNum.getText(),lbSubTotalNum.getText()));  
-    	  
+    	   	if(Sld.cking_product_num(evt.getActionCommand()))//재고쳌
+        	{
+    	   	  	ArrayList<ShowListVO> arr2 =Sld.insertViewList(evt.getActionCommand()); 
+    	    	  showTable(arr2);
+    	    	  lbSubTotalNum.setText(Sld.cal_all_sum());
+    	    	  lbTotalNum.setText(Sld.total(lbDiscountNum.getText(),lbSubTotalNum.getText()));  
+    	    	  
+        	}
+        	else
+        		JOptionPane.showMessageDialog(this, "입력한 상품의 재고가 부족합니다");
     	  //아이시스
     }//GEN-LAST:event_bt2ActionPerformed
 
     private void bt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt1ActionPerformed
-    	ArrayList<ShowListVO> arr2 =Sld.insertViewList(evt.getActionCommand()); 
-  	  showTable(arr2);
-  	lbSubTotalNum.setText(Sld.cal_all_sum());
-    lbTotalNum.setText(Sld.total(lbDiscountNum.getText(),lbSubTotalNum.getText()));  
-	  
+    	if(Sld.cking_product_num(evt.getActionCommand()))//재고쳌
+    	{
+    	   	ArrayList<ShowListVO> arr2 =Sld.insertViewList(evt.getActionCommand()); 
+    	  	 showTable(arr2);
+    	  	lbSubTotalNum.setText(Sld.cal_all_sum());
+    	    lbTotalNum.setText(Sld.total(lbDiscountNum.getText(),lbSubTotalNum.getText()));
+    	}
+    	else
+    		JOptionPane.showMessageDialog(this, "입력한 상품의 재고가 부족합니다");
+    	
+  
   	  //쓰봉
     }//GEN-LAST:event_bt1ActionPerformed
 
-    private void ftBarcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftBarcodeActionPerformed
-      
-    }//GEN-LAST:event_ftBarcodeActionPerformed
-    
+  
    
     private void btRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegisterActionPerformed
     	  
@@ -513,23 +547,35 @@ public class PosMain extends javax.swing.JFrame {
         		return;
         		
         	}
-    	 	if(Sld.ck_List(tmbarc))
-    	 	{
-    	 			ArrayList<ShowListVO> arr2 =Sld.insertViewList(ftBarcode.getText()); 
-    	    	  showTable(arr2);
-    	    	  lbSubTotalNum.setText(Sld.cal_all_sum());
-    	    	  lbTotalNum.setText(Sld.total(lbDiscountNum.getText(),lbSubTotalNum.getText()));  
-    	    	  
-    	 	}
-    	 	else
-    	 	{
-    	 		JOptionPane.showMessageDialog(this, "상품이 없거나 바코드 잘못 입력했습니다");
-    	 		ftBarcode.requestFocus();
-    	 	}
+
+		if (Sld.ck_List(tmbarc)) {
+			if (Sld.checkDate(tmbarc)) {
+				JOptionPane.showMessageDialog(this, "유통기한이 지난 상품입니다.");
+				System.out.println("유통기한이 지난 상품입니다.");
+				ftBarcode.requestFocus();
+			} else {
+				if (Sld.cking_product_num(tmbarc))// 재고쳌
+				{
+					ArrayList<ShowListVO> arr2 = Sld.insertViewList(ftBarcode.getText());
+					showTable(arr2);
+					lbSubTotalNum.setText(Sld.cal_all_sum());
+					lbTotalNum.setText(Sld.total(lbDiscountNum.getText(), lbSubTotalNum.getText()));
+				} else
+					JOptionPane.showMessageDialog(this, "입력한 상품의 재고가 부족합니다");
+
+			}
+
+		} else {
+			JOptionPane.showMessageDialog(this, "상품이 없거나 바코드 잘못 입력했습니다");
+			ftBarcode.requestFocus();
+		}
     	  
 
     }//GEN-LAST:event_btRegisterActionPerformed
+  
     String [] colHeader= {"상품번호","상품명","가격","수량","유통기한"};
+ 
+    
     public void showTable(ArrayList<ShowListVO> arr)
     {
     	//table.get
@@ -542,11 +588,30 @@ public class PosMain extends javax.swing.JFrame {
     			data[i][j]=getout(pp,j);
     		}
     	}
-    //	DefalultTableModel model=new DefaultTableModel(2차원,1차원);
-    	DefaultTableModel model=new DefaultTableModel(data,colHeader);
-    	jTable1.setModel(model);
+   
+    	   DefaultTableModel model=new DefaultTableModel(data,colHeader) {
+    	        boolean[] canEdit = new boolean [] {false, false, false, true, false};
+    	        @Override
+    	         public boolean isCellEditable(int rowIndex, int columnIndex) {
+    	             return canEdit [columnIndex];
+    	             }   
+    	        
+    	        @Override
+    	          public void setValueAt(Object val,int row, int col) {
+    	             if(col==3) {
+    	                String str=val.toString();
+    	                System.out.println("val: "+val+", data1: "+data[row][col]);
+    	                data[row][col]=new Integer(str);
+    	                System.out.println("str: "+str+", data2: "+data[row][col]);
+    	                int n=Sld.updateQuty(data[row][0].toString(), 
+    	                      new Integer(data[row][col].toString()).intValue());
+    	             }
+    	             super.setValueAt(val, row, col);
+    	          }
+    	     };
+    	     jTable1.setModel(model);
     }
-
+   
     public void ClearTable()
     {
     	//table.get
@@ -558,7 +623,7 @@ public class PosMain extends javax.swing.JFrame {
     			data[i][j]="";
     		}
     	}
-    //	DefalultTableModel model=new DefaultTableModel(2차원,1차원);
+   
     	DefaultTableModel model=new DefaultTableModel(data,colHeader);
     	jTable1.setModel(model);
     }
@@ -591,7 +656,20 @@ public class PosMain extends javax.swing.JFrame {
 
     private void byClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_byClearActionPerformed
     	System.out.println("취소");
-    }//GEN-LAST:event_byClearActionPerformed
+    	if(jTable1.getSelectedRow() != -1) {
+  	 		Object obj=jTable1.getValueAt(jTable1.getSelectedRow(),0);
+  	 		System.out.println(obj.toString());
+  	 		String 상품코드=obj.toString();
+  	 		
+  	 		
+  	 		showTable(Sld.deleteViewList(상품코드));
+  	 		//String tmppp=(Sld.cal_all_sum().isEmpty()) ? "0" :Sld.cal_all_sum();
+  	 		lbSubTotalNum.setText(Sld.cal_all_sum());
+      	    lbTotalNum.setText(Sld.total(lbDiscountNum.getText(),lbSubTotalNum.getText()));  
+  	 		
+  	 	}
+    	
+    }
 
     private void byDiscountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_byDiscountActionPerformed
     	System.out.println("행사");
@@ -618,55 +696,72 @@ public boolean ck_num(String tt)
 	  }
 }
     
-    private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
-    	System.exit(0);
-    }//GEN-LAST:event_btCancelActionPerformed
-
+private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btCancelActionPerformed
+    if (ck == 0) {
+       ClearTable();
+       Sld.all_cancel();
+       ck = 1;
+       lbChangeNum.setText("");
+       lbTotalNum.setText("");
+       tfReceived.setText("");
+       lbDiscountNum.setText("");
+       lbSubTotalNum.setText("");
+    } else {
+       JOptionPane.showMessageDialog(this, "상품이 없습니다.");
+       //올취소
+    }
+}
     private void btSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSubmitActionPerformed
-       System.out.println("낙결");
+       System.out.println("결제버튼 낙결");
        if(change())
        {
+    	   
     	   Sld.insertAll(); 
            ClearTable();
+           ck=1;
        }
-      
-      
-       
+     
     }//GEN-LAST:event_btSubmitActionPerformed
 
-    public boolean change()
-    {    	int tmp2=0;
-    		int tmp4=0;
-        
-        //tfReceived.setText("이거뭐냐");//받은돈
 
-    	String recived = tfReceived.getText();
-    	if(!(recived.trim().isEmpty()) && recived!=null) {
-    		 String total =lbTotalNum.getText();
-             tmp2 = Integer.parseInt(total);
-              tmp4 = Integer.parseInt(recived);
-             tmp4=tmp4-tmp2;
-    	}
-    	else
-    	{
-    		JOptionPane.showMessageDialog(this, "금액을 입력하세요");
-    		return false;
-    	}
- 
-          if(tmp4<0)
-          {
-        	  JOptionPane.showMessageDialog(this, "금액이 부족합니다");
-        	  tfReceived.requestFocus();
-      		  return false;
-          }
-          lbChangeNum.setText(Integer.toString(tmp4));//거스름돈
-          lbTotalNum.setText("");
-          tfReceived.setText("");
-          lbDiscountNum.setText("");
-          lbSubTotalNum.setText("");
-          
-          return true;
-    }
+    public boolean change() {
+        try {
+           int totalInt = 0;
+           int receivedInt = 0;
+
+           // tfReceived.setText("이거뭐냐");//받은돈
+           String total = lbTotalNum.getText();
+           String received = tfReceived.getText();
+
+           if (received.trim().isEmpty() || received == null) {
+              totalInt = Integer.parseInt(total);
+             System.out.println(total);
+
+              receivedInt = 0;
+           } else if (!(received.trim().isEmpty()) && received != null) {
+              totalInt = Integer.parseInt(total);
+              receivedInt = Integer.parseInt(received);
+              receivedInt = receivedInt - totalInt;
+              if (receivedInt < 0) {
+                 JOptionPane.showMessageDialog(this, "금액이 부족합니다");
+                 tfReceived.requestFocus();
+                 return false;
+              }
+           }
+
+           lbChangeNum.setText(Integer.toString(receivedInt));// 거스름돈
+           lbTotalNum.setText("");
+           tfReceived.setText("");
+           lbDiscountNum.setText("");
+           lbSubTotalNum.setText("");
+
+           return true;
+           
+        } catch (NumberFormatException e) {
+           JOptionPane.showMessageDialog(this, "상품과 금액을 입력해주세요");
+           return false;
+        }
+     }
     private void btAdminActionPerformed(java.awt.event.ActionEvent evt) {
     	Object obj=evt.getSource();
     	PasswordforAdmin pa=new PasswordforAdmin();
@@ -689,25 +784,57 @@ public boolean ck_num(String tt)
     private void bt5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt5ActionPerformed
     	ArrayList<ShowListVO> arr2 =Sld.insertViewList(evt.getActionCommand()); 
     	  showTable(arr2);
-    	  lbSubTotalNum.setText(Sld.cal_all_sum());  lbTotalNum.setText(Sld.total(lbDiscountNum.getText(),lbSubTotalNum.getText()));  
+    	  lbSubTotalNum.setText(Sld.cal_all_sum());
+    	  lbTotalNum.setText(Sld.total(lbDiscountNum.getText(),lbSubTotalNum.getText()));  
     	  
     	  //교통카드
     }//GEN-LAST:event_bt5ActionPerformed
 
     private void bt6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt6ActionPerformed
-    	ArrayList<ShowListVO> arr2 =Sld.insertViewList(evt.getActionCommand()); 
-    	  showTable(arr2);
-    	  lbSubTotalNum.setText(Sld.cal_all_sum());
-    	  lbTotalNum.setText(Sld.total(lbDiscountNum.getText(),lbSubTotalNum.getText()));  
-    	  
+    	
+     	if(Sld.cking_product_num(evt.getActionCommand()))//재고쳌
+        {
+     		ArrayList<ShowListVO> arr2 =Sld.insertViewList(evt.getActionCommand()); 
+      	  showTable(arr2);
+      	  lbSubTotalNum.setText(Sld.cal_all_sum());
+      	  lbTotalNum.setText(Sld.total(lbDiscountNum.getText(),lbSubTotalNum.getText()));  
+ 
+        }
+    	else
+    		JOptionPane.showMessageDialog(this, "입력한 상품의 재고가 부족합니다");
+    	
     	  //상품권
     }//GEN-LAST:event_bt6ActionPerformed
 
 
+    String[] colHeader2 = { "결제시간", "No", "상품번호", "상품명", "가격", "수량" };
+    private void showSoldInfo(ArrayList<Dsc_VO> arr) {
+      // 거래내역 테이블 보기
+      Object[][] data = new Object[arr.size()][6];
+      for (int i = 0; i < data.length; i++) {
+         Dsc_VO dv = arr.get(i);
+         data[i][0] = dv.getSalesdate();
+         data[i][1] = dv.getcustomer_no();
+         data[i][2] = dv.getproduct_no();
+         data[i][3] = dv.getproduct_name();
+         data[i][4] = dv.getoutput_price();
+         data[i][5] = dv.getsales_vol();
+         DefaultTableModel model=new DefaultTableModel(data,colHeader2) {
+             boolean[] canEdit = new boolean [] {false, false, false, false, false};
+             @Override
+              public boolean isCellEditable(int rowIndex, int columnIndex) {
+                  return canEdit [columnIndex];
+                  }   
+          };
+          jTable3.setModel(model);
+      }
+   }// -------------------------------------------------
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+    	
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -737,8 +864,10 @@ public boolean ck_num(String tt)
                 new PosMain().setVisible(true);
             }
         });
+        
     }
 
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel barImage;
     private javax.swing.JButton bt1;

@@ -7,6 +7,8 @@ package tis_pos;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -610,6 +612,17 @@ public class PosMain extends javax.swing.JFrame {
     	          }
     	     };
     	     jTable1.setModel(model);
+    	     
+    	     jTable1.addMouseListener(new MouseAdapter() {
+                 @Override
+                 public void mousePressed(MouseEvent e) {
+                    Object obj=jTable1.getValueAt(jTable1.getSelectedRow(),0);
+                    String 상품번호=obj.toString();
+                    ftBarcode.setText(상품번호);
+                 }
+              });
+    	     
+    	     
     }
    
     public void ClearTable()
@@ -655,21 +668,16 @@ public class PosMain extends javax.swing.JFrame {
     }
 
     private void byClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_byClearActionPerformed
-    	System.out.println("취소");
-    	if(jTable1.getSelectedRow() != -1) {
-  	 		Object obj=jTable1.getValueAt(jTable1.getSelectedRow(),0);
-  	 		System.out.println(obj.toString());
-  	 		String 상품코드=obj.toString();
-  	 		
-  	 		
-  	 		showTable(Sld.deleteViewList(상품코드));
-  	 		//String tmppp=(Sld.cal_all_sum().isEmpty()) ? "0" :Sld.cal_all_sum();
-  	 		lbSubTotalNum.setText(Sld.cal_all_sum());
-      	    lbTotalNum.setText(Sld.total(lbDiscountNum.getText(),lbSubTotalNum.getText()));  
-  	 		
-  	 	}
-    	
-    }
+        System.out.println("취소");
+       
+             String 상품코드=ftBarcode.getText();   
+             showTable(Sld.deleteViewList(상품코드));
+             //String tmppp=(Sld.cal_all_sum().isEmpty()) ? "0" :Sld.cal_all_sum();
+             lbSubTotalNum.setText(Sld.cal_all_sum());
+              lbTotalNum.setText(Sld.total(lbDiscountNum.getText(),lbSubTotalNum.getText()));
+            ftBarcode.setText("");
+          
+     }
 
     private void byDiscountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_byDiscountActionPerformed
     	System.out.println("행사");
@@ -712,7 +720,7 @@ private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIR
     }
 }
     private void btSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSubmitActionPerformed
-       System.out.println("결제버튼 낙결");
+       System.out.println("결제버튼");//////////결제버튼
        if(change())
        {
     	   

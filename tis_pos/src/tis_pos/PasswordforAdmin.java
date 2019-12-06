@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tis_pos;
 
-import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 
-import javax.swing.*;
 
 /**
  *
@@ -32,27 +28,57 @@ public class PasswordforAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pwField = new javax.swing.JPasswordField();
-        pwCheckBox = new javax.swing.JCheckBox();
+        jPanel1 = new javax.swing.JPanel();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jCheckBox1 = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
+        lbLogo = new javax.swing.JLabel();
+        lbTitle = new javax.swing.JLabel();
         pwEnter = new javax.swing.JButton();
         pwCancel = new javax.swing.JButton();
 
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        pwField.setText("");
-        pwField.setPreferredSize(new Dimension(200,30));
+        jPanel1.setBackground(new java.awt.Color(81, 13, 117));
 
-        pwCheckBox.setText("Show password");
-        pwCheckBox.addActionListener(new java.awt.event.ActionListener() {
+        jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
+        jPasswordField1.setFont(new java.awt.Font("맑은 고딕", 0, 18)); // NOI18N
+        jPasswordField1.setText("");
+    
+        jPasswordField1.addActionListener(new ActionListener() {
+        	
+        	@Override
+        	public void actionPerformed(ActionEvent e)
+        	{
+        		pwEnterActionPerformed(e);
+        	}
+        });
+        
+
+        jCheckBox1.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
+        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox1.setText("Show password");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pwCheckBoxActionPerformed(evt);
+            	pwCheckBoxActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("관리자 모드에 접근하기 위해 비밀번호가 필요합니다.");
+        jLabel1.setFont(new java.awt.Font("맑은 고딕", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(180, 255, 229));
+        jLabel1.setText("관리자 모드에 접근하기 위해 비밀번호가 필요합니다");
 
+        lbLogo.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
+        lbLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo_down.png"))); // NOI18N
+
+        lbTitle.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
+        lbTitle.setForeground(new java.awt.Color(180, 255, 229));
+        lbTitle.setText("LOGIN");
+
+        pwEnter.setBackground(new java.awt.Color(180, 255, 229));
+        pwEnter.setFont(new java.awt.Font("맑은 고딕", 1, 14)); // NOI18N
+        pwEnter.setForeground(new java.awt.Color(81, 13, 117));
         pwEnter.setText("확인");
         pwEnter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,6 +86,9 @@ public class PasswordforAdmin extends javax.swing.JFrame {
             }
         });
 
+        pwCancel.setBackground(new java.awt.Color(255, 153, 153));
+        pwCancel.setFont(new java.awt.Font("맑은 고딕", 1, 14)); // NOI18N
+        pwCancel.setForeground(new java.awt.Color(81, 13, 117));
         pwCancel.setText("취소");
         pwCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,44 +96,60 @@ public class PasswordforAdmin extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(88, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(86, 86, 86))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(pwEnter, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(pwCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                .addComponent(lbTitle)
+                                .addComponent(lbLogo)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCheckBox1)
+                                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(132, 132, 132))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addComponent(lbLogo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbTitle)
+                .addGap(25, 25, 25)
+                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pwCancel)
+                    .addComponent(pwEnter))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(23, 23, 23))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pwCheckBox)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pwField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(pwEnter, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(pwCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(85, 85, 85))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel1)
-                .addGap(0, 31, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(pwField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addComponent(pwCheckBox)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pwEnter, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pwCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -115,17 +160,27 @@ public class PasswordforAdmin extends javax.swing.JFrame {
         }
 
     private void pwCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwCheckBoxActionPerformed
-        if(pwCheckBox.isSelected()) {
-        	pwField.setEchoChar((char)0);
+        if(jCheckBox1.isSelected()) {
+        	jPasswordField1.setEchoChar((char)0);
         }else {
-        	pwField.setEchoChar('*');
+        	jPasswordField1.setEchoChar('*');
         }
     }
 
     private void pwEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwEnterActionPerformed
-        char[] input=pwField.getPassword();
+        char[] input=jPasswordField1.getPassword();
         if(checkIfCorrect(input)) {
-        	JOptionPane.showMessageDialog(null,"Password is correct!");
+        	
+        	Object obj=evt.getSource();
+     
+        	POS_GUI pos=new POS_GUI();
+        	if(obj==pwEnter || obj==jPasswordField1) {
+        		
+        		pos.pack();
+        		pos.setLocation(500,300);
+        		pos.setVisible(true);
+        		PasswordforAdmin.this.dispose();
+        	}
         }else {
         	JOptionPane.showMessageDialog(null,"비밀번호가 틀립니다.");
         }
@@ -143,9 +198,6 @@ public class PasswordforAdmin extends javax.swing.JFrame {
     	Arrays.fill(correctPass, '0');
     	return isCorrect;
     }
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -179,9 +231,12 @@ public class PasswordforAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox pwCheckBox;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPasswordField pwField;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JLabel lbLogo;
+    private javax.swing.JLabel lbTitle;
     private javax.swing.JButton pwCancel;
     private javax.swing.JButton pwEnter;
     // End of variables declaration//GEN-END:variables

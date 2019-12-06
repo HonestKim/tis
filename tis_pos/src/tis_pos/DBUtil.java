@@ -1,7 +1,8 @@
 package tis_pos;
 import java.sql.*;
 public class DBUtil {
-	static String url="jdbc:oracle:thin:@192.168.0.92:1521:XE";
+	static String url="jdbc:oracle:thin:@localHost:1521:XE";
+	//static String url="jdbc:oracle:thin:@192.168.0.92:1521:XE";
 	static String user="tis";
 	static String pwd="1234";
 

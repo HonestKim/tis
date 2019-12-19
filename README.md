@@ -12,16 +12,16 @@ Java 개발 입문자를 위한 개발 능력 향상을 목표로 한 프로젝�
  
  데이터베이스를 관리하고 이벤트 핸들러를 사용했습니다.
 <h4>1) 제작 환경</h4>
- &nbsp Oracle Database 11g Express Edition  11.2.0.2.0<br>
- &nbsp Oracle JDK 1.8.0_231<br>
- &nbsp Eclipse 2019-09 IDE<br>
- &nbsp NetBeans IDE 8.2 (Build 201609300101)<br>
+Oracle Database 11g Express Edition  11.2.0.2.0<br>
+Oracle JDK 1.8.0_231<br>
+Eclipse 2019-09 IDE<br>
+NetBeans IDE 8.2 (Build 201609300101)<br>
 
  <h4>2) 팀원</h4>
- &nbsp  5명
+5명
  
  <h4>3) 제작기간</h4>
-  &nbsp 2019년 11월 27일 ~ 2019년 12월 6일
+2019년 11월 27일 ~ 2019년 12월 6일
 
 <h2>3. 프로젝트 소개</h2>
 편의점이나 슈퍼마켓에서 쓰이는 POS(point of sales)
@@ -30,14 +30,15 @@ Java 개발 입문자를 위한 개발 능력 향상을 목표로 한 프로젝�
 <img src = "https://github.com/HonestKim/tis/blob/master/images/2%EB%B2%88.PNG" width = "90%"></img>
 
 <h3>1) 데이터베이스 설계</h3>
-<img src = "https://github.com/HonestKim/tis/blob/master/images/3%EB%B2%88.PNG" width = "90%"></img><br>
+<img src = "https://github.com/HonestKim/tis/blob/master/images/3%EB%B2%88.PNG" width = "90%"></img>
 
-<h3>2) 프로젝트 시연 </h3>
-<img src = "https://github.com/HonestKim/tis/blob/master/images/%EB%A9%94%EC%9D%B81.PNG" width = "90%"></img><br>
+<h3>2) 프로젝트 시연</h3>
+<img src = "https://github.com/HonestKim/tis/blob/master/images/%EB%A9%94%EC%9D%B81.PNG" width = "90%"></img>
 메인화면입니다.
-<img src = "https://github.com/HonestKim/tis/blob/master/images/%EB%A9%94%EC%9D%B83.PNG" width = "90%"></img><br>
+<br>
+<img src = "https://github.com/HonestKim/tis/blob/master/images/%EB%A9%94%EC%9D%B83.PNG" width = "90%"></img>
 최근결제내역 화면입니다.
-
+<br>
 <img src = "https://github.com/HonestKim/tis/blob/master/images/%EB%A9%94%EC%9D%B82.PNG" width = "90%"></img><br>
 우상단에 관리자 모드 눌렀을시 나오는 화면입니다.
 

@@ -47,3 +47,14 @@ Java 개발 입문자를 위한 개발 능력 향상을 목표로 한 프로젝�
 
 <img src = "https://github.com/HonestKim/tis/blob/master/images/%EC%9E%AC%EA%B3%A0%EA%B4%80%EB%A6%AC2.PNG" width = "90%"></img><br>
 이곳에서는 상품의 추가 삭제 등 과 같은 재고관리가 가능합니다
+
+<img src = "https://github.com/HonestKim/tis/blob/master/images/%EC%9E%AC%EA%B3%A0%EA%B4%80%EB%A6%AC3.PNG" width = "90%"></img><br>
+
+매출현황 탭에서는 그래프로 표현 해 주고 있으며
+
+<img src = "https://github.com/HonestKim/tis/blob/master/images/5%EB%B2%88.PNG" width = "90%"></img><br>
+
+특정기간 참조도 가능합니다
+
+
+감사합니다.

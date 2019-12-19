@@ -35,7 +35,6 @@ Java 개발 입문자를 위한 개발 능력 향상을 목표로 한 프로젝�
 <h3>2) 프로젝트 시연 </h3>
 <img src = "https://github.com/HonestKim/tis/blob/master/images/%EB%A9%94%EC%9D%B81.PNG" width = "90%"></img><br>
 메인화면입니다.
-
 <img src = "https://github.com/HonestKim/tis/blob/master/images/%EB%A9%94%EC%9D%B83.PNG" width = "90%"></img><br>
 최근결제내역 화면입니다.
 
@@ -50,11 +49,11 @@ Java 개발 입문자를 위한 개발 능력 향상을 목표로 한 프로젝�
 
 <img src = "https://github.com/HonestKim/tis/blob/master/images/%EC%9E%AC%EA%B3%A0%EA%B4%80%EB%A6%AC3.PNG" width = "90%"></img><br>
 
-매출현황 탭에서는 그래프로 표현 해 주고 있으며
+매출현황 탭에서는 매출을 그래프로 표현 해 주고 있으며
 
 <img src = "https://github.com/HonestKim/tis/blob/master/images/5%EB%B2%88.PNG" width = "90%"></img><br>
 
-특정기간 참조도 가능합니다
+특정기간 조회도 가능합니다
 
 
 감사합니다.
